@@ -21,7 +21,6 @@ class StoreCategory extends GateWay
      */
     public function get(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.storecategory.get';
         $result = $this->request($body);
         return $result;

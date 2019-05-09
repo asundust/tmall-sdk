@@ -21,7 +21,6 @@ class StoreItem extends GateWay
      */
     public function query(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.storeitem.query';
         $result = $this->request($body);
         return $result;

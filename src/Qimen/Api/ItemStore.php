@@ -22,7 +22,6 @@ class ItemStore extends GateWay
      */
     public function banding(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.itemstore.banding';
         $result = $this->request($body);
         return $result;
@@ -36,7 +35,6 @@ class ItemStore extends GateWay
      */
     public function query(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.itemstore.query';
         $result = $this->request($body);
         return $result;

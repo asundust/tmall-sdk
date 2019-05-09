@@ -24,7 +24,6 @@ class Store extends GateWay
      */
     public function create(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.store.create';
         $result = $this->request($body);
         return $result;
@@ -38,7 +37,6 @@ class Store extends GateWay
      */
     public function update(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.store.update';
         $result = $this->request($body);
         return $result;
@@ -52,7 +50,6 @@ class Store extends GateWay
      */
     public function delete(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.store.delete';
         $result = $this->request($body);
         return $result;
@@ -66,7 +63,6 @@ class Store extends GateWay
      */
     public function query(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.store.query';
         $result = $this->request($body);
         return $result;

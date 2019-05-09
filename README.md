@@ -1,6 +1,9 @@
 # 介绍
 天猫商家相关的sdk
 
+# 安装
+composer require asundust/tmall-sdk
+
 # 接口查找
 查询当前sdk里是否含有需要的api搜索接口名字请全局搜索去掉开头的`taobao.`。
 
@@ -23,3 +26,6 @@ Tmall::qimen($config)->store->query(['storeId' => 12345678]);
 执行`(new Auth($config))->auth($redirectUri);`，传入回调地址，拿到code去执行`(new Auth($config))->getAccessToken($code)`。
 
 相关文档https://open.taobao.com/doc.htm?docId=102635&docType=1
+
+# License
+[MIT license](https://opensource.org/licenses/MIT)

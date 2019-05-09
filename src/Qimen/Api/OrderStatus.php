@@ -22,7 +22,6 @@ class OrderStatus extends GateWay
      */
     public function sync(array $body = [])
     {
-        $this->needSessionKey = true;
         $this->methodName = 'qimen.orderStatus.sync';
         $result = $this->request($body);
         return $result;
