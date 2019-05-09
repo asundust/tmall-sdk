@@ -1,0 +1,40 @@
+{
+  "name": "asundust/tmall-sdk",
+  "description": "sdk for tmall store",
+  "keywords": [
+    "taobao",
+    "tmall",
+    "quanqudao",
+    "qimen",
+    "sdk"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "asundust",
+      "email": "asundust@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "doctrine/cache": "^1.8",
+    "jenssegers/agent": "^2.6"
+  },
+  "autoload": {
+    "classmap": [
+    ],
+    "psr-4": {
+      "TmallSdk\\": "src"
+    },
+    "files": [
+      "src/Tools/Helpers.php"
+    ]
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^4.2"
+  }
+}
