@@ -5,6 +5,7 @@ namespace TmallSdk;
 /**
  * @method static \TmallSdk\Top\Application top(array $config = []) 用户授权
  * @method static \TmallSdk\Inventory\Application inventory(array $config = []) 仓库
+ * @method static \TmallSdk\Items\Application items(array $config = []) 商品
  * @method static \TmallSdk\Qimen\Application qimen(array $config = []) 奇门
  *
  * Class Tmall
