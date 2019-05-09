@@ -23,9 +23,11 @@ Tmall::qimen($config)->store->query(['storeId' => 12345678]);
 一般必传`app_key`、`secret`，像`customerId`属于特殊接口选传。
 
 # Auth用户授权
-执行`(new Auth($config))->auth($redirectUri);`，传入回调地址，拿到code去执行`(new Auth($config))->getAccessToken($code)`。
+执行`(new Auth($config))->auth($redirectUri);`
 
-相关文档https://open.taobao.com/doc.htm?docId=102635&docType=1
+传入回调地址，拿到code去执行`(new Auth($config))->getAccessToken($code);`。
+
+相关文档 https://open.taobao.com/doc.htm?docId=102635&docType=1
 
 # License
 [MIT license](https://opensource.org/licenses/MIT)
