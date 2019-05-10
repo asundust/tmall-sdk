@@ -22,6 +22,9 @@ Tmall::qimen($config)->store->query(['storeId' => 12345678]);
 ```
 一般必传`app_key`、`secret`，像`customerId`属于特殊接口选传。
 
+接口命名规则：如`taobao.qimen.storeinventory.itemupdate`，调用方式为单词名的驼峰式，
+即`Tmall::qimen($config)->storeInventory->itemUpdate(['xxx' => 'xxx']);`
+
 # Auth用户授权
 执行`(new Auth($config))->auth($redirectUri);`
 
