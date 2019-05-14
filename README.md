@@ -11,6 +11,8 @@ composer require asundust/tmall-sdk
 
 api方法上的类注释上都放了接口文档地址。
 
+PS：部分接口可能实际使用中涉及不到，暂时没删除接口。别问我为什么不列出来。
+
 # 使用
 ```
 $config = [
