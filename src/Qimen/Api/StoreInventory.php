@@ -11,10 +11,10 @@ use TmallSdk\Qimen\GateWay;
  * qimen.storeinventory.itemquery 库存查询接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
  * qimen.storeinventory.itemadjust 库存占用调整接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
  *
- * Class StoreiInventory
+ * Class StoreInventory
  * @package QimenSdk\Api
  */
-class StoreiInventory extends GateWay
+class StoreInventory extends GateWay
 {
     /**
      * qimen.storeinventory.iteminitial 库存初始化接口

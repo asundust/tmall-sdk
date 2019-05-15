@@ -7,7 +7,7 @@ use TmallSdk\Qimen\Api\ItemStore;
 use TmallSdk\Qimen\Api\OrderStatus;
 use TmallSdk\Qimen\Api\Store;
 use TmallSdk\Qimen\Api\StoreCategory;
-use TmallSdk\Qimen\Api\StoreiInventory;
+use TmallSdk\Qimen\Api\StoreInventory;
 use TmallSdk\Qimen\Api\StoreItem;
 use TmallSdk\Tmall;
 
@@ -16,7 +16,7 @@ use TmallSdk\Tmall;
  * @property OrderStatus orderStatus 订单
  * @property Store store 门店
  * @property StoreCategory storeCategory 门店分类
- * @property StoreiInventory storeiInventory 门店库存
+ * @property StoreInventory storeInventory 门店库存
  * @property StoreItem storeItem 门店商品
  *
  * Class Application
