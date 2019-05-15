@@ -146,10 +146,9 @@ class GateWay
      */
     private function parseReps($result)
     {
-        if ($result['flag'] == 'success') { // todo
-            unset($result['flag'], $result['code'], $result['message']);
+        if ($result['flag'] == 'success') {
             return $result;
         }
-        throw new Exception($this->setError('接口请求失败，错误信息为：' . $result['code'] . ' => ' . $result['message']));
+        throw new Exception($this->setError('接口请求失败，错误信息为：' . ($result['code'] ?? '') . ' => ' . ($result['message'] ?? '')));
     }
 }
