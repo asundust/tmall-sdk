@@ -1,13 +1,13 @@
 <?php
 
-if (!function_exists('curl_post_xml')) {
+if (!function_exists('tmall_curl_post_xml')) {
     /**
      * CURL_POST_XML
      * @param $url
      * @param null $curlPost
      * @return bool|string
      */
-    function curl_post_xml($url, $curlPost = null)
+    function tmall_curl_post_xml($url, $curlPost = null)
     {
         $curl = curl_init();
         $timeout = 5;
@@ -26,14 +26,14 @@ if (!function_exists('curl_post_xml')) {
     }
 }
 
-if (!function_exists('curl_post')) {
+if (!function_exists('tmall_curl_post')) {
     /**
      * CURL_POST
      * @param $url
      * @param null $curlPost
      * @return bool|string
      */
-    function curl_post($url, $curlPost = null)
+    function tmall_curl_post($url, $curlPost = null)
     {
         $curl = curl_init();
         $timeout = 5;

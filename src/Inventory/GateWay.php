@@ -117,7 +117,7 @@ class GateWay
     {
         $parameter = self::setParameter($parameter);
         $url = ($this->isSandbox ? self::SANDBOX_URL : self::URL);
-        $result = curl_post($url, $parameter);
+        $result = tmall_curl_post($url, $parameter);
         if ($result != false) {
             preg_match("/{.+}/", $result, $pmResult);
             if (count($pmResult) == 1) {

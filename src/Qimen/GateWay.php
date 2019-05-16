@@ -126,7 +126,7 @@ class GateWay
     {
         $parameterArray = self::setParameter($body);
         $url = ($this->isSandbox ? self::SANDBOX_URL : self::URL) . $parameterArray['str'];
-        $result = curl_post_xml($url, $parameterArray['bodyXml']);
+        $result = tmall_curl_post_xml($url, $parameterArray['bodyXml']);
         if ($result != false) {
             $result = get_need_between($result, '<response>', '</response>');
             if (empty($result)) {
