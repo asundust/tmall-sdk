@@ -8,6 +8,10 @@ namespace TmallSdk;
  * @method static \TmallSdk\Item\Application item(array $config = []) 商品
  * @method static \TmallSdk\Items\Application items(array $config = []) 商品
  * @method static \TmallSdk\Qimen\Application qimen(array $config = []) 奇门
+ * @method static \TmallSdk\Rdc\Application rdc(array $config = []) 退款相关???
+ * @method static \TmallSdk\Refund\Application refund(array $config = []) 退款
+ * @method static \TmallSdk\Refunds\Application refunds(array $config = []) 退款
+ * @method static \TmallSdk\Rp\Application rp(array $config = []) 退款相关???
  * @method static \TmallSdk\Skus\Application skus(array $config = []) sku
  *
  * Class Tmall

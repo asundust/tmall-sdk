@@ -7,6 +7,7 @@ use TmallSdk\Items\GateWay;
 
 /**
  * items.onsale.get 获取当前会话用户出售中的商品列表 https://open.taobao.com/api.htm?docId=18&docType=2
+ *
  * Class OnSale
  * @package TmallSdk\Items\Api
  */

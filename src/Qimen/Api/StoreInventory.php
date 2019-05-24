@@ -12,7 +12,7 @@ use TmallSdk\Qimen\GateWay;
  * qimen.storeinventory.itemadjust 库存占用调整接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
  *
  * Class StoreInventory
- * @package QimenSdk\Api
+ * @package TmallSdk\Qimen\Api
  */
 class StoreInventory extends GateWay
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace TmallSdk\Qimen;
+namespace TmallSdk\Rp;
 
 use Exception;
 use TmallSdk\Tools\Authorize\AuthorizeTrait;
@@ -9,8 +9,8 @@ class GateWay
 {
     use AuthorizeTrait;
 
-    const URL = 'https://qimen.api.taobao.com/router/qimen/service?';
-    const SANDBOX_URL = 'http://qimenapi.tbsandbox.com/router/qimen/service?';
+    const URL = 'https://eco.taobao.com/router/rest';
+    const SANDBOX_URL = 'https://gw.api.tbsandbox.com/router/rest';
 
     protected $application;
     protected $isSandbox = false;
@@ -18,14 +18,12 @@ class GateWay
     protected $config;
     protected $appKey;
     protected $appSecret;
-    protected $customerId;
+    protected $prefixMethod = 'taobao.';
+    protected $methodName;
     protected $partnerId;
     protected $targetAppKey;
 
     protected $needSessionKey = false;
-    protected $prefixMethod = 'taobao.';
-    protected $prefixXmlHeader = '<?xml version="1.0" encoding="utf-8"?>';
-    protected $methodName;
 
     /**
      * GateWay constructor.
@@ -37,7 +35,6 @@ class GateWay
         $this->config = $config;
         $this->appKey = $config['app_key'];
         $this->appSecret = $config['secret'];
-        $this->customerId = $config['customerId'];
         $this->partnerId = $config['partner_id'] ?? null;
         $this->targetAppKey = $config['target_app_key'] ?? null;
         $this->application = $application;
@@ -66,10 +63,9 @@ class GateWay
     /**
      * 生成签名
      * @param $parameter
-     * @param $bodyXml
      * @return string
      */
-    protected function getStringToSign($parameter, $bodyXml)
+    protected function getStringToSign($parameter)
     {
         ksort($parameter);
         $str = '';
@@ -78,25 +74,25 @@ class GateWay
                 $str .= $key . $value;
             }
         }
-        $str = $this->appSecret . $str . $bodyXml . $this->appSecret;
+        $str = $this->appSecret . $str . $this->appSecret;
         $signature = strtoupper(md5($str));
         return $signature;
     }
 
     /**
      * 签名
-     * @param array $body
+     * @param array $parameter
      * @return array
      * @throws Exception
      */
-    protected function setParameter(array $body)
+    protected function setParameter(array $parameter)
     {
         $time = date('Y-m-d H:i:s', time());
         $publicParameter = [
             'app_key' => $this->appKey,
-            'customerId' => $this->customerId,
-            'format' => 'xml',
+            'format' => 'json',
             'method' => $this->prefixMethod . $this->methodName,
+            'partner_id' => $this->partnerId,
             'sign_method' => 'md5',
             'simplify' => false,
             'target_app_key' => $this->targetAppKey,
@@ -106,49 +102,48 @@ class GateWay
         if ($this->needSessionKey) {
             $publicParameter['session'] = $this->getSessionKey();
         }
-        $publicParameter = array_filter($publicParameter);
-        $bodyXml = $this->prefixXmlHeader . array_to_xml(array_filter($body));
-        $sign = $this->getStringToSign($publicParameter, $bodyXml);
-        $parameters = array_merge($publicParameter, ['sign' => $sign]);
-        return [
-            'str' => http_build_query($parameters),
-            'bodyXml' =>$bodyXml,
-        ];
+        $allParameters = array_merge(array_filter($publicParameter), array_filter($parameter));
+        $sign = $this->getStringToSign($allParameters);
+        return array_merge(array_filter($allParameters), ['sign' => $sign]);
     }
 
     /**
      * 发送参数请求
-     * @param array $body
+     * @param array $parameter
      * @return mixed
      * @throws Exception
      */
-    protected function request(array $body)
+    protected function request(array $parameter)
     {
-        $parameterArr = self::setParameter($body);
-        $url = ($this->isSandbox ? self::SANDBOX_URL : self::URL) . $parameterArr['str'];
-        $result = tmall_curl_post_xml($url, $parameterArr['bodyXml']);
+        $parameter = self::setParameter($parameter);
+        $url = ($this->isSandbox ? self::SANDBOX_URL : self::URL);
+        $result = tmall_curl_post($url, $parameter);
         if ($result != false) {
-            $result = get_need_between($result, '<response>', '</response>');
-            if (empty($result)) {
-                throw new Exception('请求失败：请求结果为空');
+            preg_match("/{.+}/", $result, $pmResult);
+            if (count($pmResult) == 1) {
+                return $this->parseReps($pmResult[0]);
             }
+            throw new Exception('解析失败：' . $result);
         } else {
             throw new Exception('请求失败：请求结果为FALSE');
         }
-        return $this->parseReps(xml_to_array($result));
     }
 
     /**
      * 解析参数
-     * @param array $result
-     * @return mixed
+     * @param $result
+     * @return bool
      * @throws Exception
      */
     private function parseReps($result)
     {
-        if ($result['flag'] == 'success') {
-            return $result;
+        $data = json_decode($result, true);
+        if ($data === false) {
+            throw new Exception($this->setError('数据解析失败，错误信息为：' . $result));
         }
-        throw new Exception($this->setError('接口请求失败，错误信息为：' . ($result['code'] ?? '') . ' => ' . ($result['message'] ?? '')));
+        if (is_array($data) && count($data) == 1 && array_key_exists('error_response', $data)) {
+            throw new Exception($this->setError('接口请求失败，错误信息为：' . array_str($data['error_response'])));
+        }
+        return $data[api_result_name($this->methodName)];
     }
 }

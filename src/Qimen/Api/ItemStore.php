@@ -10,7 +10,7 @@ use TmallSdk\Qimen\GateWay;
  * qimen.itemstore.query 门店关联商品查询接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
  *
  * Class ItemStore
- * @package QimenSdk\Api
+ * @package TmallSdk\Qimen\Api
  */
 class ItemStore extends GateWay
 {

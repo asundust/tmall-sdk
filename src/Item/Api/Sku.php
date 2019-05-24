@@ -7,6 +7,7 @@ use TmallSdk\Item\GateWay;
 
 /**
  * item.sku.get 获取SKU https://open.taobao.com/api.htm?docId=28&docType=2
+ *
  * Class Skus
  * @package TmallSdk\Item\Api
  */
