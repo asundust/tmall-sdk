@@ -129,6 +129,8 @@ class XML
                 $key = $item;
             }
 
+            $key = preg_replace("/\\d+/", '', $key);
+
             $xml .= "<{$key}{$attr}>";
 
             if ((is_array($val) || is_object($val))) {
