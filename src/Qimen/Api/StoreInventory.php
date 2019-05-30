@@ -22,7 +22,7 @@ class StoreInventory extends GateWay
      * @return mixed
      * @throws Exception
      */
-    public function query(array $body = [])
+    public function itemInitial(array $body = [])
     {
         $this->methodName = 'qimen.storeinventory.iteminitial';
         $result = $this->request($body);
