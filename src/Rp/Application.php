@@ -2,11 +2,11 @@
 
 namespace TmallSdk\Rp;
 
-use Exception;
 use TmallSdk\Rp\Api\Refund;
 use TmallSdk\Rp\Api\Refunds;
 use TmallSdk\Rp\Api\ReturnGoods;
 use TmallSdk\Tmall;
+use TmallSdk\Tools\TmallException;
 
 /**
  * @property Refund refund 退款
@@ -24,17 +24,17 @@ class Application extends Tmall
     /**
      * Application constructor.
      * @param array $config
-     * @throws Exception
+     * @throws TmallException
      */
     public function __construct(array $config)
     {
         if (empty($config)) {
-            throw new Exception('No config');
+            throw new TmallException('No config');
         }
         $configArr = ['app_key', 'secret'];
         foreach ($configArr as $configName) {
             if (!isset($config[$configName]) || empty($config[$configName])) {
-                throw new Exception("Config $configName is missing");
+                throw new TmallException("Config $configName is missing");
             }
         }
         $this->config = $config;
@@ -44,19 +44,19 @@ class Application extends Tmall
     /**
      * @param $api
      * @return bool
-     * @throws Exception
+     * @throws TmallException
      */
     public function __get($api)
     {
         try {
             $classname = __NAMESPACE__ . "\\Api\\" . ucfirst($api);
             if (!class_exists($classname)) {
-                throw new Exception('Api undefined');
+                throw new TmallException('Api undefined');
             }
             $new = new $classname($this->config, $this);
             return $new;
         } catch (Exception $e) {
-            throw new Exception('Api undefined');
+            throw new TmallException('Api undefined');
         }
     }
 

@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Items\Api;
 
-use Exception;
 use TmallSdk\Items\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * items.onsale.get 获取当前会话用户出售中的商品列表 https://open.taobao.com/api.htm?docId=18&docType=2
@@ -17,7 +17,7 @@ class OnSale extends GateWay
      * items.onsale.get 获取当前会话用户出售中的商品列表
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function get(array $parameter = [])
     {

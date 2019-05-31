@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Rp\Api;
 
-use Exception;
 use TmallSdk\Rp\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * rp.refund.review 审核退款单 https://open.taobao.com/api.htm?docId=21611&docType=2
@@ -17,7 +17,7 @@ class Refund extends GateWay
      * rp.refund.review 审核退款单
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function review(array $parameter = [])
     {

@@ -3,8 +3,12 @@
 namespace TmallSdk\Tools\Authorize;
 
 use Doctrine\Common\Cache\PhpFileCache;
-use Exception;
+use TmallSdk\Tools\TmallException;
 
+/**
+ * Trait AuthorizeTrait
+ * @package TmallSdk\Tools\Authorize
+ */
 trait AuthorizeTrait
 {
     protected $cachePrefix = 'tmall.access_token.';
@@ -43,7 +47,7 @@ trait AuthorizeTrait
      * 缓存token数据
      * @param $tokenArr
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function cacheSetAccessToken($tokenArr)
     {
@@ -56,7 +60,7 @@ trait AuthorizeTrait
     /**
      * 获取token数据
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function cacheGetAccessToken()
     {
@@ -64,13 +68,13 @@ trait AuthorizeTrait
         $cache = new PhpFileCache(sys_get_temp_dir());
         $tokenArr = $cache->fetch($this->cachePrefix . md5($this->appKey . $this->appSecret));
         if (empty($tokenArr)) {
-            throw new Exception('需要重新授权“(new Auth($config))->auth($redirectUri);”');
+            throw new TmallException('需要重新授权“(new Auth($config))->auth($redirectUri);”');
         }
         if ($tokenArr['re_expires_in'] > 0 || $tokenArr['r2_valid'] - time() <= 86400) { // todo
             $tokenArr = (new Authorize($this->config))->refreshAccessToken($tokenArr['refresh_token']);
         }
         if (empty($tokenArr)) {
-            throw new Exception('需要重新授权“(new Auth($config))->auth($redirectUri);”');
+            throw new TmallException('需要重新授权“(new Auth($config))->auth($redirectUri);”');
         }
         return $tokenArr;
     }
@@ -78,7 +82,7 @@ trait AuthorizeTrait
     /**
      * 获取access token
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function getSessionKey()
     {

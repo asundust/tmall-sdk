@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Qimen\Api;
 
-use Exception;
 use TmallSdk\Qimen\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * qimen.storecategory.get 门店类目获取接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
@@ -17,7 +17,7 @@ class StoreCategory extends GateWay
      * qimen.storecategory.get 门店类目获取接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function get(array $body = [])
     {

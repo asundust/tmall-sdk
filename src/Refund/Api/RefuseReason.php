@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Refund\Api;
 
-use Exception;
 use TmallSdk\Refund\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * refund.refusereason.get 获取拒绝原因列表 https://open.taobao.com/api.htm?docId=26204&docType=2
@@ -17,7 +17,7 @@ class RefuseReason extends GateWay
      * refund.refusereason.get 获取拒绝原因列表
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function get(array $parameter = [])
     {

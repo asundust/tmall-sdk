@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Qimen\Api;
 
-use Exception;
 use TmallSdk\Qimen\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * qimen.itemstore.banding 商品关联绑定接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
@@ -18,7 +18,7 @@ class ItemStore extends GateWay
      * qimen.itemstore.banding 商品关联绑定接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function banding(array $body = [])
     {
@@ -31,7 +31,7 @@ class ItemStore extends GateWay
      * qimen.itemstore.query 门店关联商品查询接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function query(array $body = [])
     {

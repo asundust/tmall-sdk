@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Qimen\Api;
 
-use Exception;
 use TmallSdk\Qimen\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * qimen.storeinventory.iteminitial 库存初始化接口 https://open.taobao.com/doc.htm?docId=104651&docType=1
@@ -20,7 +20,7 @@ class StoreInventory extends GateWay
      * qimen.storeinventory.iteminitial 库存初始化接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function itemInitial(array $body = [])
     {
@@ -33,7 +33,7 @@ class StoreInventory extends GateWay
      * qimen.storeinventory.itemupdate 库存增量更新接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function itemUpdate(array $body = [])
     {
@@ -46,7 +46,7 @@ class StoreInventory extends GateWay
      * qimen.storeinventory.itemquery 库存查询接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function itemQuery(array $body = [])
     {
@@ -59,7 +59,7 @@ class StoreInventory extends GateWay
      * qimen.storeinventory.itemadjust 库存占用调整接口
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function itemAdjust(array $body = [])
     {

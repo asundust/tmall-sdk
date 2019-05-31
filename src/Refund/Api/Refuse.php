@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Refund\Api;
 
-use Exception;
 use TmallSdk\Refund\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * refund.refuse 卖家拒绝退款 https://open.taobao.com/api.htm?docId=10480&docType=2
@@ -17,7 +17,7 @@ class Refuse extends GateWay
      * refund.refuse 卖家拒绝退款
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function index(array $parameter = [])
     {

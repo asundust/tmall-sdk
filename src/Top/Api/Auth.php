@@ -2,7 +2,7 @@
 
 namespace TmallSdk\Top\Api;
 
-use Exception;
+use TmallSdk\Tools\TmallException;
 use TmallSdk\Top\GateWay;
 
 /**
@@ -18,7 +18,7 @@ class Auth extends GateWay
      * auth.token.create 用户token获取
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function tokenCreate(array $parameter = [])
     {
@@ -31,7 +31,7 @@ class Auth extends GateWay
      * auth.token.refresh 用户token刷新
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function tokenRefresh(array $parameter = [])
     {

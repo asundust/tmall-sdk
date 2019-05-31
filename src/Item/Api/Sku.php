@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Item\Api;
 
-use Exception;
 use TmallSdk\Item\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * item.sku.get 获取SKU https://open.taobao.com/api.htm?docId=28&docType=2
@@ -17,7 +17,7 @@ class Sku extends GateWay
      * item.sku.get 获取SKU
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function get(array $parameter = [])
     {

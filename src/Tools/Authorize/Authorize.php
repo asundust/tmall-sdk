@@ -2,9 +2,13 @@
 
 namespace TmallSdk\Tools\Authorize;
 
-use Exception;
 use TmallSdk\Tmall;
+use TmallSdk\Tools\TmallException;
 
+/**
+ * Class Authorize
+ * @package TmallSdk\Tools\Authorize
+ */
 class Authorize
 {
     use AuthorizeTrait;
@@ -21,7 +25,7 @@ class Authorize
     /**
      * Auth constructor.
      * @param $config
-     * @throws Exception
+     * @throws TmallException
      */
     public function __construct($config)
     {
@@ -34,12 +38,12 @@ class Authorize
     /**
      * auth 授权页面
      * @param null $redirectUri
-     * @throws Exception
+     * @throws TmallException
      */
     public function auth($redirectUri = null)
     {
         if (empty($this->appKey)) {
-            throw new Exception('请填写app_key！');
+            throw new TmallException('请填写app_key！');
         }
         header("Location: " . ($this->isSandbox ? self::SANDBOX_URL : self::URL) . http_build_query(array_merge([
                 'client_id' => $this->appKey,
@@ -54,12 +58,12 @@ class Authorize
      * @param string $code
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function getAccessToken($code, $parameter = [])
     {
         if (strlen($code) == 0) {
-            throw new Exception('请求失败，无code返回！');
+            throw new TmallException('请求失败，无code返回！');
         }
         if (!isset($parameter['redirect_uri'])) {
             $parameter['redirect_uri'] = $this->getRedirectUri();
@@ -77,7 +81,7 @@ class Authorize
             $tokenArr = $this->toChangeField($tokenArr);
             return $this->cacheSetAccessToken($tokenArr);
         }
-        throw new Exception('请求失败，接口无返回数据！');
+        throw new TmallException('请求失败，接口无返回数据！');
     }
 
     /**
@@ -85,7 +89,7 @@ class Authorize
      * @param string $refreshToken
      * @param array $parameter
      * @return bool|mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function refreshAccessToken($refreshToken, $parameter = [])
     {

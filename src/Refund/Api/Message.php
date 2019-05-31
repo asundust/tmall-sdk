@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Refund\Api;
 
-use Exception;
 use TmallSdk\Refund\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * refund.message.add 创建退款留言/凭证 https://open.taobao.com/api.htm?docId=125&docType=2
@@ -17,7 +17,7 @@ class Message extends GateWay
      * refund.message.add 创建退款留言/凭证
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function add(array $parameter = [])
     {

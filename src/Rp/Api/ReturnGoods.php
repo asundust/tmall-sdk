@@ -2,8 +2,8 @@
 
 namespace TmallSdk\Rp\Api;
 
-use Exception;
 use TmallSdk\Rp\GateWay;
+use TmallSdk\Tools\TmallException;
 
 /**
  * rp.returngoods.agree 卖家同意退货 https://open.taobao.com/api.htm?docId=22466&docType=2
@@ -19,7 +19,7 @@ class ReturnGoods extends GateWay
      * rp.returngoods.agree 卖家同意退货
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function agree(array $parameter = [])
     {
@@ -33,7 +33,7 @@ class ReturnGoods extends GateWay
      * rp.returngoods.agree 卖家同意退货
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function refill(array $parameter = [])
     {
@@ -47,7 +47,7 @@ class ReturnGoods extends GateWay
      * rp.returngoods.refuse 卖家拒绝退货
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function refuse(array $parameter = [])
     {

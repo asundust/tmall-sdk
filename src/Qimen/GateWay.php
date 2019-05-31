@@ -2,9 +2,13 @@
 
 namespace TmallSdk\Qimen;
 
-use Exception;
 use TmallSdk\Tools\Authorize\AuthorizeTrait;
+use TmallSdk\Tools\TmallException;
 
+/**
+ * Class GateWay
+ * @package TmallSdk\Qimen
+ */
 class GateWay
 {
     use AuthorizeTrait;
@@ -87,7 +91,7 @@ class GateWay
      * 签名
      * @param array $body
      * @return array
-     * @throws Exception
+     * @throws TmallException
      */
     protected function setParameter(array $body)
     {
@@ -112,7 +116,7 @@ class GateWay
         $parameters = array_merge($publicParameter, ['sign' => $sign]);
         return [
             'str' => http_build_query($parameters),
-            'bodyXml' =>$bodyXml,
+            'bodyXml' => $bodyXml,
         ];
     }
 
@@ -120,7 +124,7 @@ class GateWay
      * 发送参数请求
      * @param array $body
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     protected function request(array $body)
     {
@@ -130,10 +134,10 @@ class GateWay
         if ($result != false) {
             $result = get_need_between($result, '<response>', '</response>');
             if (empty($result)) {
-                throw new Exception('请求失败：请求结果为空');
+                throw new TmallException('请求失败：请求结果为空');
             }
         } else {
-            throw new Exception('请求失败：请求结果为FALSE');
+            throw new TmallException('请求失败：请求结果为FALSE');
         }
         return $this->parseReps(xml_to_array($result));
     }
@@ -142,13 +146,13 @@ class GateWay
      * 解析参数
      * @param array $result
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     private function parseReps($result)
     {
         if ($result['flag'] == 'success') {
             return $result;
         }
-        throw new Exception($this->setError('接口请求失败，错误信息为：' . ($result['code'] ?? '') . ' => ' . ($result['message'] ?? '')));
+        throw new TmallException($this->setError('接口请求失败，错误信息为：' . ($result['code'] ?? '') . ' => ' . ($result['message'] ?? '')));
     }
 }

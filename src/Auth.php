@@ -2,9 +2,13 @@
 
 namespace TmallSdk;
 
-use Exception;
 use TmallSdk\Tools\Authorize\Authorize;
+use TmallSdk\Tools\TmallException;
 
+/**
+ * Class Auth
+ * @package TmallSdk
+ */
 class Auth
 {
     protected $config;
@@ -12,7 +16,7 @@ class Auth
     /**
      * Auth constructor.
      * @param $config
-     * @throws Exception
+     * @throws TmallException
      */
     public function __construct($config)
     {
@@ -22,7 +26,7 @@ class Auth
     /**
      * auth 授权页面
      * @param null $redirectUri
-     * @throws Exception
+     * @throws TmallException
      */
     public function auth($redirectUri = null)
     {
@@ -34,7 +38,7 @@ class Auth
      * @param $code
      * @param array $parameter
      * @return bool
-     * @throws Exception
+     * @throws TmallException
      */
     public function getAccessToken($code, $parameter = [])
     {
@@ -44,7 +48,7 @@ class Auth
     /**
      * 获取AccessToken数据
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     public function getAccessTokenData()
     {

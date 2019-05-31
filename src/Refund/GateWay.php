@@ -2,9 +2,13 @@
 
 namespace TmallSdk\Refund;
 
-use Exception;
 use TmallSdk\Tools\Authorize\AuthorizeTrait;
+use TmallSdk\Tools\TmallException;
 
+/**
+ * Class GateWay
+ * @package TmallSdk\Refund
+ */
 class GateWay
 {
     use AuthorizeTrait;
@@ -83,7 +87,7 @@ class GateWay
      * 签名
      * @param array $parameter
      * @return array
-     * @throws Exception
+     * @throws TmallException
      */
     protected function setParameter(array $parameter)
     {
@@ -111,7 +115,7 @@ class GateWay
      * 发送参数请求
      * @param array $parameter
      * @return mixed
-     * @throws Exception
+     * @throws TmallException
      */
     protected function request(array $parameter)
     {
@@ -123,9 +127,9 @@ class GateWay
             if (count($pmResult) == 1) {
                 return $this->parseReps($pmResult[0]);
             }
-            throw new Exception('解析失败：' . $result);
+            throw new TmallException('解析失败：' . $result);
         } else {
-            throw new Exception('请求失败：请求结果为FALSE');
+            throw new TmallException('请求失败：请求结果为FALSE');
         }
     }
 
@@ -133,16 +137,16 @@ class GateWay
      * 解析参数
      * @param $result
      * @return bool
-     * @throws Exception
+     * @throws TmallException
      */
     private function parseReps($result)
     {
         $data = json_decode($result, true);
         if ($data === false) {
-            throw new Exception($this->setError('数据解析失败，错误信息为：' . $result));
+            throw new TmallException($this->setError('数据解析失败，错误信息为：' . $result));
         }
         if (is_array($data) && count($data) == 1 && array_key_exists('error_response', $data)) {
-            throw new Exception($this->setError('接口请求失败，错误信息为：' . array_str($data['error_response'])));
+            throw new TmallException($this->setError('接口请求失败，错误信息为：' . array_str($data['error_response'])));
         }
         return $data[api_result_name($this->methodName)];
     }
