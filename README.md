@@ -32,7 +32,7 @@ Tmall::qimen($config)->store->query(['storeId' => 12345678]);
 超过标准四段式的接口会使用驼峰的方法，如`taobao.rdc.aligenius.sendgoods.cancel`的请求方式为`Tmall::rdc($config)->aliGenius->sendGoodsCancel(['xxx' => 'xxx']);`
 
 # 传参
-奇门接口用的是xml格式入参的，如果入参需要入重复参数，由于PHP不支持通键数组，目前妥协办法为：键值拼上数字，在转成xml的时候自动去掉。
+奇门接口用的是xml格式入参的，如果入参需要入重复参数，由于PHP不支持同键数组，目前妥协办法为：键值拼上数字，在转成xml的时候自动去掉。
 关于这个，如有更好建议请提出。
 如：入参规则为
 ```
@@ -99,6 +99,8 @@ Tmall::qimen($config)->store->query(['storeId' => 12345678]);
 
 # 其他
 如果遇到错误之处还请各位指出
+
+需要增加接口请告知
 
 # License
 [MIT license](https://opensource.org/licenses/MIT)
