@@ -1,13 +1,13 @@
 <?php
 
-namespace TmallSdk\Inventory;
+namespace TmallSdk\Trades;
 
-use TmallSdk\Inventory\Api\Store;
 use TmallSdk\Tmall;
 use TmallSdk\Tools\TmallException;
+use TmallSdk\Top\Api\Auth;
 
 /**
- * @property Store store 门店
+ * @property Auth auth 用户授权
  *
  * Class Application
  * @package QimenSdk

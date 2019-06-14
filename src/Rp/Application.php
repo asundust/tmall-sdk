@@ -55,7 +55,7 @@ class Application extends Tmall
             }
             $new = new $classname($this->config, $this);
             return $new;
-        } catch (Exception $e) {
+        } catch (TmallException $e) {
             throw new TmallException('Api undefined');
         }
     }

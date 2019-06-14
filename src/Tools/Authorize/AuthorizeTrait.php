@@ -68,13 +68,13 @@ trait AuthorizeTrait
         $cache = new PhpFileCache(sys_get_temp_dir());
         $tokenArr = $cache->fetch($this->cachePrefix . md5($this->appKey . $this->appSecret));
         if (empty($tokenArr)) {
-            throw new TmallException('需要重新授权“(new Auth($config))->auth($redirectUri);”');
+            throw new TmallException('需要重新授权“(new \TmallSdk\Auth($config))->auth($redirectUri);”');
         }
         if ($tokenArr['re_expires_in'] > 0 || $tokenArr['r2_valid'] - time() <= 86400) { // todo
             $tokenArr = (new Authorize($this->config))->refreshAccessToken($tokenArr['refresh_token']);
         }
         if (empty($tokenArr)) {
-            throw new TmallException('需要重新授权“(new Auth($config))->auth($redirectUri);”');
+            throw new TmallException('需要重新授权“(new \TmallSdk\Auth($config))->auth($redirectUri);”');
         }
         return $tokenArr;
     }

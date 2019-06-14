@@ -23,9 +23,8 @@ class Authorize
     protected $config;
 
     /**
-     * Auth constructor.
+     * Authorize constructor.
      * @param $config
-     * @throws TmallException
      */
     public function __construct($config)
     {

@@ -16,7 +16,6 @@ class Auth
     /**
      * Auth constructor.
      * @param $config
-     * @throws TmallException
      */
     public function __construct($config)
     {

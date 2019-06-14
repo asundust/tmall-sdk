@@ -91,9 +91,10 @@ Tmall::qimen($config)->store->query(['storeId' => 12345678]);
 上述的`store0`和`store1`在转成xml后会自动变回`store`。
 
 # Auth用户授权
-执行`(new Auth($config))->auth($redirectUri);`
 
-传入回调地址，拿到code去执行`(new Auth($config))->getAccessToken($code);`。
+执行`(new \TmallSdk\Auth($config))->auth($redirectUri);`
+
+传入回调地址，拿到code去执行`(new \TmallSdk\Auth($config))->getAccessToken($code);`。
 
 相关文档 [https://open.taobao.com/doc.htm?docId=102635&docType=1](https://open.taobao.com/doc.htm?docId=102635&docType=1)
 
