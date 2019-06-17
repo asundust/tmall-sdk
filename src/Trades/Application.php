@@ -4,10 +4,10 @@ namespace TmallSdk\Trades;
 
 use TmallSdk\Tmall;
 use TmallSdk\Tools\TmallException;
-use TmallSdk\Top\Api\Auth;
+use TmallSdk\Trades\Api\Sold;
 
 /**
- * @property Auth auth 用户授权
+ * @property Sold sold 交易
  *
  * Class Application
  * @package QimenSdk
