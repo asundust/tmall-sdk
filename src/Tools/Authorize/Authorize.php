@@ -44,12 +44,20 @@ class Authorize
         if (empty($this->appKey)) {
             throw new TmallException('请填写app_key！');
         }
-        header("Location: " . ($this->isSandbox ? self::SANDBOX_URL : self::URL) . http_build_query(array_merge([
+        $url = ($this->isSandbox ? self::SANDBOX_URL : self::URL) . http_build_query(array_merge([
                 'client_id' => $this->appKey,
                 'response_type' => 'code',
                 'state' => 'code',
                 'view' => is_mobile() ? 'wap' : 'web',
-            ], ['redirect_uri' => $redirectUri ?: $this->getRedirectUri()])));
+            ], ['redirect_uri' => $redirectUri ?: $this->getRedirectUri()]));
+        echo sprintf('<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url=%1$s" />
+        <title>Redirecting to %1$s</title>
+    </head>
+</html>', htmlspecialchars($url, ENT_QUOTES, 'UTF-8'));
     }
 
     /**
