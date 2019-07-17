@@ -5,7 +5,6 @@ namespace TmallSdk;
 /**
  * Class Tmall
  *
- * @method static \TmallSdk\Top\Application top(array $config = []) 用户授权
  * @method static \TmallSdk\Inventory\Application inventory(array $config = []) 仓库
  * @method static \TmallSdk\Item\Application item(array $config = []) 商品
  * @method static \TmallSdk\Items\Application items(array $config = []) 商品
@@ -15,6 +14,8 @@ namespace TmallSdk;
  * @method static \TmallSdk\Refunds\Application refunds(array $config = []) 退款
  * @method static \TmallSdk\Rp\Application rp(array $config = []) 退款相关???
  * @method static \TmallSdk\Skus\Application skus(array $config = []) sku
+ * @method static \TmallSdk\Top\Application top(array $config = []) 用户授权
+ * @method static \TmallSdk\Trades\Application trades(array $config = []) 交易
  *
  * @package TmallSdk
  */

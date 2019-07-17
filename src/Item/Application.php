@@ -2,14 +2,16 @@
 
 namespace TmallSdk\Item;
 
+use TmallSdk\Item\Api\OuterId;
 use TmallSdk\Item\Api\Sku;
 use TmallSdk\Item\Api\Skus;
 use TmallSdk\Tmall;
 use TmallSdk\Tools\TmallException;
 
 /**
+ * @property OuterId outerId 外部id
  * @property Sku sku SKU
- * @property Skus skus SKUS
+ * @property Skus skus SKU
  *
  * Class Application
  * @package QimenSdk
