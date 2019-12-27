@@ -6,6 +6,7 @@ use TmallSdk\Tools\Authorize\AuthorizeTrait;
 
 /**
  * Class GateWay
+ *
  * @package TmallSdk\Item
  */
 class BaseGateWay
@@ -30,6 +31,7 @@ class BaseGateWay
 
     /**
      * GateWay constructor.
+     *
      * @param array $config
      * @param $application
      */
@@ -65,6 +67,7 @@ class BaseGateWay
 
     /**
      * 生成签名
+     *
      * @param $parameter
      * @return string
      */
@@ -82,6 +85,7 @@ class BaseGateWay
 
     /**
      * 签名
+     *
      * @param array $parameters
      * @return array
      * @throws TmallException
@@ -110,6 +114,7 @@ class BaseGateWay
 
     /**
      * 处理并过滤参数
+     *
      * @param $parameters
      * @return array
      */
@@ -131,6 +136,7 @@ class BaseGateWay
 
     /**
      * 发送参数请求
+     *
      * @param array $parameter
      * @return mixed
      * @throws TmallException
@@ -153,6 +159,7 @@ class BaseGateWay
 
     /**
      * 解析参数
+     *
      * @param $result
      * @return bool
      * @throws TmallException
@@ -164,8 +171,8 @@ class BaseGateWay
             throw new TmallException($this->setError('数据解析失败，错误信息为：' . $result));
         }
         if (is_array($data) && count($data) == 1 && array_key_exists('error_response', $data)) {
-            throw new TmallException($this->setError('接口请求失败，错误信息为：' . array_str($data['error_response'])));
+            throw new TmallException($this->setError('接口请求失败，错误信息为：' . tmall_array_str($data['error_response'])));
         }
-        return $data[api_result_name(($this->prefixMethod != 'taobao.' ? $this->prefixMethod : '') . $this->methodName)];
+        return $data[tmall_api_result_name(($this->prefixMethod != 'taobao.' ? $this->prefixMethod : '') . $this->methodName)];
     }
 }

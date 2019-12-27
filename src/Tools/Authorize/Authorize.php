@@ -7,6 +7,7 @@ use TmallSdk\Tools\TmallException;
 
 /**
  * Class Authorize
+ *
  * @package TmallSdk\Tools\Authorize
  */
 class Authorize
@@ -24,6 +25,7 @@ class Authorize
 
     /**
      * Authorize constructor.
+     *
      * @param $config
      */
     public function __construct($config)
@@ -36,6 +38,7 @@ class Authorize
 
     /**
      * auth 授权页面
+     *
      * @param null $redirectUri
      * @throws TmallException
      */
@@ -48,7 +51,7 @@ class Authorize
                 'client_id' => $this->appKey,
                 'response_type' => 'code',
                 'state' => 'code',
-                'view' => is_mobile() ? 'wap' : 'web',
+                'view' => tmall_is_mobile() ? 'wap' : 'web',
             ], ['redirect_uri' => $redirectUri ?: $this->getRedirectUri()]));
         echo sprintf('<!DOCTYPE html>
 <html lang="en">
@@ -62,6 +65,7 @@ class Authorize
 
     /**
      * 获取AccessToken
+     *
      * @param string $code
      * @param array $parameter
      * @return mixed
@@ -81,7 +85,7 @@ class Authorize
             'code' => $code,
             'grant_type' => 'authorization_code',
             'state' => 'authorization_code',
-            'view' => is_mobile() ? 'wap' : 'web',
+            'view' => tmall_is_mobile() ? 'wap' : 'web',
         ], $parameter));
         if (!empty($result)) {
             $tokenArr = json_decode($result['token_result'], true);
@@ -93,6 +97,7 @@ class Authorize
 
     /**
      * 刷新AccessToken
+     *
      * @param string $refreshToken
      * @param array $parameter
      * @return bool|mixed
@@ -106,7 +111,7 @@ class Authorize
             'grant_type' => 'refresh_token',
             'refresh_token' => $refreshToken,
             'state' => 'refresh_token',
-            'view' => is_mobile() ? 'wap' : 'web',
+            'view' => tmall_is_mobile() ? 'wap' : 'web',
         ], $parameter));
         if (!empty($result)) {
             $tokenArr = json_decode($result['token_result'], true);

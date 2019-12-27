@@ -7,6 +7,7 @@ use TmallSdk\Tools\TmallException;
 
 /**
  * Class GateWay
+ *
  * @package TmallSdk\Qimen
  */
 class GateWay
@@ -33,6 +34,7 @@ class GateWay
 
     /**
      * GateWay constructor.
+     *
      * @param array $config
      * @param Application $application
      */
@@ -69,6 +71,7 @@ class GateWay
 
     /**
      * 生成签名
+     *
      * @param $parameter
      * @param $bodyXml
      * @return string
@@ -89,6 +92,7 @@ class GateWay
 
     /**
      * 签名
+     *
      * @param array $body
      * @return array
      * @throws TmallException
@@ -111,7 +115,7 @@ class GateWay
             $publicParameter['session'] = $this->getSessionKey();
         }
         $publicParameter = array_filter($publicParameter);
-        $bodyXml = $this->prefixXmlHeader . array_to_xml(array_filter($body));
+        $bodyXml = $this->prefixXmlHeader . tmall_array_to_xml(array_filter($body));
         $sign = $this->getStringToSign($publicParameter, $bodyXml);
         $parameters = array_merge($publicParameter, ['sign' => $sign]);
         return [
@@ -122,6 +126,7 @@ class GateWay
 
     /**
      * 发送参数请求
+     *
      * @param array $body
      * @return mixed
      * @throws TmallException
@@ -132,18 +137,19 @@ class GateWay
         $url = ($this->isSandbox ? self::SANDBOX_URL : self::URL) . $parameterArr['str'];
         $result = tmall_curl_post_xml($url, $parameterArr['bodyXml']);
         if ($result != false) {
-            $result = get_need_between($result, '<response>', '</response>');
+            $result = tmall_get_need_between($result, '<response>', '</response>');
             if (empty($result)) {
                 throw new TmallException('请求失败：请求结果为空');
             }
         } else {
             throw new TmallException('请求失败：请求结果为FALSE');
         }
-        return $this->parseReps(xml_to_array($result));
+        return $this->parseReps(tmall_xml_to_array($result));
     }
 
     /**
      * 解析参数
+     *
      * @param array $result
      * @return mixed
      * @throws TmallException

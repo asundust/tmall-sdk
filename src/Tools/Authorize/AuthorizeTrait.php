@@ -7,6 +7,7 @@ use TmallSdk\Tools\TmallException;
 
 /**
  * Trait AuthorizeTrait
+ *
  * @package TmallSdk\Tools\Authorize
  */
 trait AuthorizeTrait
@@ -15,15 +16,17 @@ trait AuthorizeTrait
 
     /**
      * 获取回调地址
+     *
      * @return string
      */
     public function getRedirectUri()
     {
-        return (is_https() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
+        return (tmall_is_https() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
     }
 
     /**
      * 添加字符串时间到token数据里
+     *
      * @param $tokenArr
      * @return mixed
      */
@@ -45,6 +48,7 @@ trait AuthorizeTrait
 
     /**
      * 缓存token数据
+     *
      * @param $tokenArr
      * @return mixed
      * @throws TmallException
@@ -59,6 +63,7 @@ trait AuthorizeTrait
 
     /**
      * 获取token数据
+     *
      * @return mixed
      * @throws TmallException
      */
@@ -81,6 +86,7 @@ trait AuthorizeTrait
 
     /**
      * 获取access token
+     *
      * @return mixed
      * @throws TmallException
      */
